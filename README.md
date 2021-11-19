@@ -15,8 +15,6 @@ Found at https://scikit-learn.org/stable/index.html.
 
 Clone the repository and install it using... 
 
-"""
-pip install . 
-"""
+  pip install . 
 
 from within the home directory (nbaStats/)
