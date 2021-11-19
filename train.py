@@ -5,6 +5,8 @@ from sklearn.linear_model import LinearRegression
 
 # https://youtu.be/1Gx1y2boe_M
 
+ln = LinearRegression()
+
 def inpout(final):
     X = final[['home', 'Atlanta Hawks',
         'Charlotte Hornets', 'Denver Nuggets', 'Golden State Warriors',
@@ -28,13 +30,18 @@ def train_model(final):
     X, y = inpout(final)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state=100)
 
-    ln = LinearRegression()
     ln.fit(X_train, y_train)
 
     prediction = ln.predict(X_test)
 
     return prediction 
 
-def predict(next_game):
-    return ln.predict(next_game)
+def predict(next_game, player, date):
+    result = ln.predict(next_game)
+
+    results = {'player': player.name, 'date': date, 'team': player.team, 'pts': [result[0][0]], 'reb': [result[0][1]], 'ast':[result[0][2]]}
+
+    df_final = pd.DataFrame(results)
+
+    return df_final
 

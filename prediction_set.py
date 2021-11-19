@@ -3,6 +3,7 @@ import json
 import numpy as np 
 import pandas as pd
 
+from pull import get_team_name
 
 def future_compiler(upcoming, team_id):
     if upcoming['home_team']['id'] == team_id:
@@ -15,11 +16,11 @@ def future_compiler(upcoming, team_id):
             'opponent':get_team_name(opponent)}
     return g_info2
 
-def upcoming_final(df2):
+def upcoming_final(df2, final):
     df_ = df2
-    pts = df['pts'].values
-    reb = df['reb'].values
-    ast = df['ast'].values
+    pts = final['pts'].values
+    reb = final['reb'].values
+    ast = final['ast'].values
     
     pts_ = pts[-1:-6:-1]
     reb_ = reb[-1:-6:-1]
@@ -65,7 +66,7 @@ def encode_future(df2):
             df2[f'{team}'] = np.zeros(1)
     return df2
 
-def nextgame(player, date):
+def nextgame(player, final, date):
     upcoming = player.get_future_game(date)
 
     g_info = future_compiler(upcoming, player.team_id)
@@ -77,7 +78,7 @@ def nextgame(player, date):
     df = df.drop('opponent', axis = 1)
     df = df.dropna()
 
-    df = upcoming_final(df)
+    df = upcoming_final(df, final)
     df = df.drop('date', axis = 1)
 
     return df
