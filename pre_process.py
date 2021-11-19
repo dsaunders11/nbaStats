@@ -2,28 +2,7 @@ import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt 
 
-def compiler(stats_set):
-    for i, stats in enumerate(stats_set):
-        if stats['min'] == '': # not counting games that they did not play! 
-            continue
-        if stats['game']['home_team_id'] == stats['player']['team_id']:
-            home = 0 
-            opponent = stats['game']['visitor_team_id']
-        else:
-            home = 1
-            opponent = stats['game']['home_team_id']
-        g_info = {'date':stats['game']['date'][:10],'pts': stats['pts'], 'reb': stats['reb'], 'ast': stats['ast'], 'mins':stats['min'], 'home':home,
-                'opponent':get_team_name(opponent)}
-        if i == 0: 
-            df = pd.DataFrame([g_info])
-        else:
-            df2 = pd.DataFrame([g_info])
-            df = pd.concat([df,df2])
-    
-    df = df.sort_values(by=['date'])
-    df = df.reset_index(drop=True)
-
-    return df
+from pull import get_team_name
 
 def onehot_encode(df):
     other_teams = [get_team_name(op) for op in range(30)] # more efficient? 
@@ -82,13 +61,29 @@ def add_temporality(df):
     
     return df_
 
-def future_compiler(upcoming, team_id):
-    if upcoming['home_team']['id'] == team_id:
-        home = 0 
-        opponent = upcoming['visitor_team']['id']
-    else:
-        home = 1
-        opponent = upcoming['home_team']['id']
-    g_info2 = {'date':upcoming['date'][:10],'home':home,
-            'opponent':get_team_name(opponent)}
-    return g_info2
+def compiler(stats_set):
+    for i, stats in enumerate(stats_set):
+        if stats['min'] == '': # not counting games that they did not play! 
+            continue
+        if stats['game']['home_team_id'] == stats['player']['team_id']:
+            home = 0 
+            opponent = stats['game']['visitor_team_id']
+        else:
+            home = 1
+            opponent = stats['game']['home_team_id']
+        g_info = {'date':stats['game']['date'][:10],'pts': stats['pts'], 'reb': stats['reb'], 'ast': stats['ast'], 'mins':stats['min'], 'home':home,
+                'opponent':get_team_name(opponent)}
+        if i == 0: 
+            df = pd.DataFrame([g_info])
+        else:
+            df2 = pd.DataFrame([g_info])
+            df = pd.concat([df,df2])
+    
+    df = df.sort_values(by=['date'])
+    df = df.reset_index(drop=True)
+
+    df = onehot_encode(df)
+
+    final = add_temporality(df)
+
+    return final

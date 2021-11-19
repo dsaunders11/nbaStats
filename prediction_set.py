@@ -3,7 +3,17 @@ import json
 import numpy as np 
 import pandas as pd
 
-from pre_process import future_compiler 
+
+def future_compiler(upcoming, team_id):
+    if upcoming['home_team']['id'] == team_id:
+        home = 0 
+        opponent = upcoming['visitor_team']['id']
+    else:
+        home = 1
+        opponent = upcoming['home_team']['id']
+    g_info2 = {'date':upcoming['date'][:10],'home':home,
+            'opponent':get_team_name(opponent)}
+    return g_info2
 
 def upcoming_final(df2):
     df_ = df2
@@ -35,14 +45,6 @@ def upcoming_final(df2):
     
     return df_
 
-date = '2021-11-18'
-
-upcoming = get_future_game(date)
-
-g_info = future_compiler(upcoming, team_id)
-
-df2 = pd.DataFrame([g_info2])
-
 other_teams = ['Atlanta Hawks',
        'Charlotte Hornets', 'Denver Nuggets', 'Golden State Warriors',
        'Houston Rockets', 'LA Clippers', 'Los Angeles Lakers',
@@ -63,8 +65,19 @@ def encode_future(df2):
             df2[f'{team}'] = np.zeros(1)
     return df2
 
-df2 = df2.drop('opponent', axis = 1)
-df2 = df2.dropna()
+def nextgame(player, date):
+    upcoming = player.get_future_game(date)
 
-df2 = upcoming_final(df2)
-df2 = df2.drop('date', axis = 1)
+    g_info = future_compiler(upcoming, player.team_id)
+
+    df = pd.DataFrame([g_info])
+
+    df = encode_future(df)
+
+    df = df.drop('opponent', axis = 1)
+    df = df.dropna()
+
+    df = upcoming_final(df)
+    df = df.drop('date', axis = 1)
+
+    return df
