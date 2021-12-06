@@ -104,8 +104,11 @@ def compiler(stats_set):
         The training dataset, cleaned and processed. 
     
     """
+
     for i, stats in enumerate(stats_set):
-        if stats['min'] == '': # not counting games that they did not play! 
+        if stats['min'] == '' or stats['min'] == '0:00': # not counting games that they did not play! 
+            if i == 0:
+                df = pd.DataFrame([])
             continue
         if stats['game']['home_team_id'] == stats['player']['team_id']:
             home = 0 
