@@ -2,10 +2,27 @@ import requests
 import json 
 import numpy as np 
 import pandas as pd
+from datetime import datetime
 
 from pull import get_team_name
 
-def future_compiler(upcoming, team_id):
+def future_compiler(upcoming, team_id): 
+    """
+    Sets up the necessary categorical variables for a future game. 
+
+    Parameters 
+    ----------
+    upcoming: list 
+        the basic information about the upcoming game 
+    team_id: int 
+        the player's team's ID 
+
+    Returns 
+    ----------
+    g_info2: dict 
+        the basic categorical information about the upcoming game 
+    
+    """
     if upcoming['home_team']['id'] == team_id:
         home = 0 
         opponent = upcoming['visitor_team']['id']
@@ -17,6 +34,22 @@ def future_compiler(upcoming, team_id):
     return g_info2
 
 def upcoming_final(df2, final):
+    """
+    Adds previous five-game statistics to each sample as numerical data. 
+
+    Parameters 
+    ----------
+    df2: pandas dataframe
+        upcoming game with categorical variables 
+    final: pandas dataframe 
+        Containing basic stats from past games (pts, reb, ast, date, etc)
+
+    Returns 
+    ----------
+    df_: pandas dataframe 
+        The updated df, previous stats included. 
+    
+    """
     df_ = df2
     pts = final['pts'].values
     reb = final['reb'].values
@@ -59,14 +92,49 @@ other_teams = ['Atlanta Hawks',
        'Portland Trail Blazers', 'Washington Wizards']
 
 def encode_future(df2):
-    for team in other_teams: # getting the other teams in and targeting the opponent (the order has to be the same as the training set) 
+    """
+    One-hot encodes the NBA teams for the next game using pandas (to ensure the prediction dataset has the same format as the training/testing one)
+
+    Parameters 
+    ----------
+    df2: pandas dataframe
+        upcoming game with simple parameters 
+
+    Returns 
+    ----------
+    df2: pandas dataframe 
+        The updated df, with the given opponent one-hot encoded with the other NBA teams. 
+    
+    """
+    for team in other_teams:
         if team == df2['opponent'].values:
             df2[f'{team}'] = np.ones(1)
         else:
             df2[f'{team}'] = np.zeros(1)
     return df2
 
-def nextgame(player, final, date):
+def nextgame(player, final):
+    """
+    Compiles the necessary information for the next game to enter into the ML algorithms. 
+
+    Parameters 
+    ----------
+    player: class obj 
+        the given player 
+    final: pandas dataframe 
+        The training dataset 
+
+    Returns 
+    ----------
+    df: pandas dataframe 
+        The data to pe processed by the ML algorithms for a prediction.
+    gamedate: str 
+        the date of the game to be predicted  
+    
+    """
+
+    date = datetime.today().strftime('%Y-%m-%d')
+
     upcoming = player.get_future_game(date)
 
     g_info = future_compiler(upcoming, player.team_id)
@@ -79,6 +147,7 @@ def nextgame(player, final, date):
     df = df.dropna()
 
     df = upcoming_final(df, final)
+    gamedate = g_info['date']
     df = df.drop('date', axis = 1)
 
-    return df
+    return df, gamedate

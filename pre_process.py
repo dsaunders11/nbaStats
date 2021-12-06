@@ -1,10 +1,26 @@
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt 
+from datetime import datetime
 
 from pull import get_team_name
 
 def onehot_encode(df):
+    """
+    One-hot encode a dataframe using pandas to identify the opposing team for a given game. 
+
+    Parameters 
+    ----------
+    df: pandas dataframe
+        Containing basic stats from past games (pts, reb, ast, date, etc)
+
+    Returns 
+    ----------
+    df: pandas dataframe 
+        The updated df, with one-hot encoding for each NBA team. 
+    
+    """
+
     other_teams = [get_team_name(op) for op in range(30)] # more efficient? 
     othert = other_teams
 
@@ -18,14 +34,26 @@ def onehot_encode(df):
 
     oh = pd.get_dummies(df['opponent'])
 
-    learned_opponents = df['opponent'].values
-
     df = df.drop('opponent', axis = 1)
     df = pd.concat([df, oh], axis=1)
 
     return df 
 
 def add_temporality(df):
+    """
+    Adds previous five-game statistics to each sample as numerical data. 
+
+    Parameters 
+    ----------
+    df: pandas dataframe
+        Containing basic stats from past games (pts, reb, ast, date, etc)
+
+    Returns 
+    ----------
+    df: pandas dataframe 
+        The updated df, previous stats included. 
+    
+    """
     df_ = df.drop([0,1,2,3,4])
     
     pts = df['pts'].values
@@ -62,6 +90,20 @@ def add_temporality(df):
     return df_
 
 def compiler(stats_set):
+    """
+    Processes the API data into a clean dataframe for analysis and predictions. 
+
+    Parameters 
+    ----------
+    stats_set: list
+        Incoming data on all previous games from the balldontlie API request. 
+
+    Returns 
+    ----------
+    final: pandas dataframe 
+        The training dataset, cleaned and processed. 
+    
+    """
     for i, stats in enumerate(stats_set):
         if stats['min'] == '': # not counting games that they did not play! 
             continue
@@ -85,5 +127,13 @@ def compiler(stats_set):
     df = onehot_encode(df)
 
     final = add_temporality(df)
+
+    # Remove the current game if it is underway 
+
+    date = datetime.today().strftime('%Y-%m-%d')
+
+    for i in final['date']:
+        if i == date:
+            final = final.iloc[:-1 , :] # https://thispointer.com/drop-last-row-of-pandas-dataframe-in-python-3-ways/
 
     return final
