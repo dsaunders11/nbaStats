@@ -4,3 +4,5 @@ matplotlib
 datetime
 sklearn
 streamlit
+requests
+json
