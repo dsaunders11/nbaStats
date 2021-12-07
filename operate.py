@@ -48,10 +48,7 @@ if len(player) > 0:
 
     st.subheader('_Random Forest Regression Calculation_')
 
-    forest = pd.DataFrame({'PTS':result3['Pts'], 'REB':result3['Reb'], 'AST': result3['Ast']})
-    forest.set_index(['PTS', 'REB', 'AST'])
-
-    st.table()
+    st.table({'PTS':result3['Pts'], 'REB':result3['Reb'], 'AST': result3['Ast']})
     st.write("Error: " + str(result3['Error'][0]))
     st.write('Regression Score: ' + str(result3['Regression Score'][0]))
 
@@ -70,7 +67,10 @@ if len(player) > 0:
 
     st.header('__*Previous 5-Game Statistics*__')
 
-    st.table(plstats[-5:])
+    final_stats = plstats[-5:]
+    final_stats.reset_index()
+
+    st.table(final_stats)
 
     st.balloons()
 
