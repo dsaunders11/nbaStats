@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import pandas as pd 
 
 from pull import Player 
 from pre_process import compiler, season_stats
