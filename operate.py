@@ -21,7 +21,7 @@ elapsed = st.progress(0)
 if len(player) > 0:
 
     pl = Player(player)
-    elapsed.progress(1)
+    elapsed.progress(5)
 
     training_data = compiler(pl.stats)
     elapsed.progress(40)
@@ -32,11 +32,12 @@ if len(player) > 0:
     elapsed.progress(50)
 
     next_game, gamedate = nextgame(pl, training_data) 
-    elapsed.progress(100)
+    elapsed.progress(90)
 
     result = predict(next_game, pl, gamedate, pred_model, pred_inputs)
     result2 = predict_nn(training_data, next_game, pl, gamedate)
     result3 = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
+    elapsed.progress(100)
 
     st.header('Linear Regression Calculation')
 
@@ -53,4 +54,6 @@ if len(player) > 0:
     st.header('Season Statistics')
 
     st.write(plstats)
+
+    st.balloons()
 
