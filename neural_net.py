@@ -234,11 +234,12 @@ def predict_nn(final, next_game, player, date):
         result.append(r * np.max(y) * 1.1)
         errors.append(err)
 
-    results = {'player': player.name, 'date': date, 'team': player.team, 'pts': [result[0][0]], 'reb': [result[1][0]], 'ast':[result[2][0]],
-        'mean_squared_err1': [errors[0]], 'mean_squared_err2': [errors[1]], 'mean_squared_err3': [errors[2]]
+    results = {'Player': player.name, 'Date': date, 'Team': player.team, 'Pts': [result[0][0]], 'Reb': [result[1][0]], 'Ast':[result[2][0]],
+        'Error in Pts': [errors[0]], 'Error in Reb': [errors[1]], 'Error in Ast': [errors[2]]
     }
 
     df_final = pd.DataFrame(results)
+    df_final.reset_index(drop=True, inplace=True)
     return df_final
 
 

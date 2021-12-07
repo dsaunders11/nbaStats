@@ -16,7 +16,7 @@ player = st.text_input("Player:")
 
 st.text('Progress:')
 
-elapsed = st.progress(0)
+elapsed = st.progress(0) # times estimated based on the running time of each segment (as performed in a notebook)
 
 if len(player) > 0:
 
@@ -41,11 +41,11 @@ if len(player) > 0:
 
     st.header('Linear Regression Calculation')
 
-    st.write(result)
+    st.table(result)
 
     st.header('Neural Network Calculation')
 
-    st.write(result2)
+    st.table(result2)
 
     st.header('Random Forest Regression Calculation')
 

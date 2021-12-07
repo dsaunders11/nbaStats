@@ -66,9 +66,10 @@ def predict_forest(next_game, player, date, pred_model, pred_inputs):
     chi2, r2 = mean_squared_error(pred_inputs, pred_model), r2_score(pred_inputs, pred_model) # error calculations (https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html)
     #https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html
 
-    results = {'player': player.name, 'date': date, 'team': player.team, 'pts': [result[0][0]], 'reb': [result[0][1]], 'ast':[result[0][2]],
-        'mean_squared_error': chi2, 'regression score': r2
+    results = {'Player': player.name, 'Date': date, 'Team': player.team, 'Pts': [result[0][0]], 'Reb': [result[0][1]], 'Ast':[result[0][2]],
+        'Error': chi2, 'Regression Score': r2
     }
 
     df_final = pd.DataFrame(results)
+    df_final.reset_index(drop=True, inplace=True)
     return df_final
