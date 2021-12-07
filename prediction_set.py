@@ -141,6 +141,7 @@ def nextgame(player, final):
 
     df = encode_future(df)
 
+    opponent = df['opponent']
     df = df.drop('opponent', axis = 1)
     df = df.dropna()
 
@@ -148,4 +149,4 @@ def nextgame(player, final):
     gamedate = g_info['date']
     df = df.drop('date', axis = 1)
 
-    return df, gamedate
+    return df, gamedate, opponent

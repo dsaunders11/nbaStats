@@ -239,7 +239,6 @@ def predict_nn(final, next_game, player, date):
     }
 
     df_final = pd.DataFrame(results)
-    df_final.reset_index(drop=True, inplace=True)
     return df_final
 
 

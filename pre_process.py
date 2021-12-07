@@ -89,7 +89,7 @@ def add_temporality(df):
     
     return df_
 
-def compiler(stats_set):
+def compiler(stats_set, show=False):
     """
     Processes the API data into a clean dataframe for analysis and predictions. 
 
@@ -127,9 +127,15 @@ def compiler(stats_set):
     df = df.sort_values(by=['date'])
     df = df.reset_index(drop=True)
 
-    df = onehot_encode(df)
+    if show == False:
 
-    final = add_temporality(df)
+        df = onehot_encode(df)
+
+        final = add_temporality(df)
+
+    else:
+
+        final = df
 
     # Remove the current game if it is underway 
 
