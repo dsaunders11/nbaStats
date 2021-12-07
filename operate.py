@@ -50,21 +50,21 @@ if len(player) > 0:
     st.header('Random Forest Regression Calculation')
 
     st.table({'PTS':result3['Pts'], 'REB':result3['Reb'], 'AST': result3['Ast']})
-    st.write("Error: " + result3['Error'][0])
-    st.write('Regression Score: ' + result3['Regression Score'][0])
+    st.write("Error: " + str(result3['Error']))
+    st.write('Regression Score: ' + str(result3['Regression Score'][0]))
 
     st.header('Linear Regression Calculation')
 
     st.table({'PTS':result['Pts'], 'REB':result['Reb'], 'AST': result['Ast']})
-    st.write("Error: " + result['Error'][0])
-    st.write('Regression Score: ' + result['Regression Score'][0])
+    st.write("Error: " + str(result['Error'][0]))
+    st.write('Regression Score: ' + str(result['Regression Score'][0]))
 
     st.header('Neural Network Calculation')
 
     st.table({'PTS':result2['Pts'], 'REB':result2['Reb'], 'AST': result2['Ast']})
-    st.write("Error (pts): " + result2['Error in Pts'][0])
-    st.write("Error (reb): " + result2['Error in Reb'][0])
-    st.write("Error (ast): " + result2['Error in Ast'][0])
+    st.write("Error (pts): " + str(result2['Error in Pts'][0]))
+    st.write("Error (reb): " + str(result2['Error in Reb'][0]))
+    st.write("Error (ast): " + str(result2['Error in Ast'][0]))
 
     st.header('Season Statistics')
 
