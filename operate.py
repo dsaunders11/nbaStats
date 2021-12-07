@@ -25,9 +25,9 @@ if len(player) > 0:
 
     training_data = compiler(pl.stats)
     elapsed.progress(40)
-    statistics = compiler(pl.stats, show=True)
+    # statistics = compiler(pl.stats)
     elapsed.progress(60)
-    plstats = statistics[['date', 'pts', 'reb', 'ast']]
+    plstats = training_data[['date', 'pts', 'reb', 'ast']]
 
     pred_model, pred_inputs = train_model(training_data)
     pred_modelfr, pred_inputsfr = training_forest(training_data)
