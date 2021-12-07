@@ -153,7 +153,7 @@ def get_team_name(team_id): # sometimes this has to be done generally
         the team of the given player 
         
     """
-    url = f'https://www.balldontlie.io/api/v1/teams/'
+    url = 'https://www.balldontlie.io/api/v1/teams/'
     response = requests.get(url)
     data = response.text
     parse_json = json.loads(data)
