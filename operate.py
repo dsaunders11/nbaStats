@@ -23,17 +23,16 @@ if len(player) > 0:
     pl = Player(player)
     elapsed.progress(5)
 
-    elapsed.progress(40)
     training_data = compiler(pl.stats)
-    elapsed.progress(60)
+    elapsed.progress(40)
     plstats = training_data[['date', 'pts', 'reb', 'ast']]
 
     pred_model, pred_inputs = train_model(training_data)
     pred_modelfr, pred_inputsfr = training_forest(training_data)
-    elapsed.progress(70)
+    elapsed.progress(50)
 
     next_game, gamedate, opponent = nextgame(pl, training_data) 
-    elapsed.progress(90)
+    elapsed.progress(80)
 
     result = predict(next_game, pl, gamedate, pred_model, pred_inputs)
     result2 = predict_nn(training_data, next_game, pl, gamedate)
@@ -67,7 +66,7 @@ if len(player) > 0:
 
     st.header('__*Previous 5-Game Statistics*__')
 
-    st.table(plstats[-5:-1])
+    st.table(plstats[-6:])
 
     st.balloons()
 
