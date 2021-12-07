@@ -14,6 +14,8 @@ st.text('Made by David Saunders')
 
 player = st.text_input("Player:")
 
+st.text('Progress:')
+
 elapsed = st.progress(0)
 
 if len(player) > 0:
