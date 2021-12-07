@@ -2,7 +2,7 @@ import streamlit as st
 import time
 
 from pull import Player 
-from pre_process import compiler
+from pre_process import compiler, season_stats
 from train import train_model, predict
 from prediction_set import nextgame
 from neural_net import predict_nn
@@ -23,7 +23,7 @@ if len(player) > 0:
     pl = Player(player)
     elapsed.progress(5)
 
-    statistics = compiler(pl.stats, show=0)
+    statistics = season_stats(pl.stats)
     elapsed.progress(40)
     training_data = compiler(pl.stats)
     elapsed.progress(60)

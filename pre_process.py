@@ -89,7 +89,7 @@ def add_temporality(df):
     
     return df_
 
-def compiler(stats_set, show=False):
+def compiler(stats_set):
     """
     Processes the API data into a clean dataframe for analysis and predictions. 
 
@@ -127,15 +127,9 @@ def compiler(stats_set, show=False):
     df = df.sort_values(by=['date'])
     df = df.reset_index(drop=True)
 
-    if show == False:
+    df = onehot_encode(df)
 
-        df = onehot_encode(df)
-
-        final = add_temporality(df)
-
-    else:
-
-        final = df
+    final = add_temporality(df)
 
     # Remove the current game if it is underway 
 
@@ -146,3 +140,53 @@ def compiler(stats_set, show=False):
             final = final.iloc[:-1 , :] # https://thispointer.com/drop-last-row-of-pandas-dataframe-in-python-3-ways/
 
     return final
+
+def season_stats(stats_set):
+    """
+    Processes the API data into a clean dataframe for the season statistics. 
+
+    Parameters 
+    ----------
+    stats_set: list
+        Incoming data on all previous games from the balldontlie API request. 
+
+    Returns 
+    ----------
+    final: pandas dataframe 
+        The season statistics. 
+    
+    """
+
+    df = pd.DataFrame([])
+    for i, stats in enumerate(stats_set):
+        if stats['min'] == '' or stats['min'] == '0:00': # not counting games that they did not play! 
+            if i == 0:
+                df = pd.DataFrame([])
+            continue
+        if stats['game']['home_team_id'] == stats['player']['team_id']:
+            home = 0 
+            opponent = stats['game']['visitor_team_id']
+        else:
+            home = 1
+            opponent = stats['game']['home_team_id']
+        g_info = {'date':stats['game']['date'][:10],'pts': stats['pts'], 'reb': stats['reb'], 'ast': stats['ast'], 'mins':stats['min'], 'home':home,
+                'opponent':get_team_name(opponent)}
+        if i == 0: 
+            df = pd.DataFrame([g_info])
+        else:
+            df2 = pd.DataFrame([g_info])
+            df = pd.concat([df,df2])
+    
+    df = df.sort_values(by=['date'])
+    df = df.reset_index(drop=True)
+
+    # Remove the current game if it is underway 
+
+    date = datetime.today().strftime('%Y-%m-%d')
+
+    for i in final['date']:
+        if i == date:
+            final = final.iloc[:-1 , :] # https://thispointer.com/drop-last-row-of-pandas-dataframe-in-python-3-ways/
+
+    return final
+
