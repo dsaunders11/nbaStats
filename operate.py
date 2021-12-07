@@ -41,7 +41,7 @@ if len(player) > 0:
     result3 = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
     elapsed.progress(100)
 
-    st.header('Next Game:' + result['Date'][0])
+    st.header('__Next Game:__ ' + result['Date'][0])
 
     st.subheader(result['Team'][0] + ' vs ' + opponent[0])
 
@@ -50,7 +50,7 @@ if len(player) > 0:
     st.header('Random Forest Regression Calculation')
 
     st.table({'PTS':result3['Pts'], 'REB':result3['Reb'], 'AST': result3['Ast']})
-    st.write("Error: " + str(result3['Error']))
+    st.write("Error: " + str(result3['Error'][0]))
     st.write('Regression Score: ' + str(result3['Regression Score'][0]))
 
     st.header('Linear Regression Calculation')
