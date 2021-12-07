@@ -1,5 +1,5 @@
 import streamlit as st
-import pandas as pd
+import time
 
 from pull import Player 
 from pre_process import compiler
@@ -14,17 +14,23 @@ st.text('Made by David Saunders')
 
 player = st.text_input("Player:")
 
+elapsed = st.progress(0)
+
 if len(player) > 0:
 
     pl = Player(player)
+    elapsed.progress(1)
 
     training_data = compiler(pl.stats)
+    elapsed.progress(40)
     plstats = training_data[['date', 'pts', 'reb', 'ast']]
 
     pred_model, pred_inputs = train_model(training_data)
     pred_modelfr, pred_inputsfr = training_forest(training_data)
+    elapsed.progress(50)
 
     next_game, gamedate = nextgame(pl, training_data) 
+    elapsed.progress(100)
 
     result = predict(next_game, pl, gamedate, pred_model, pred_inputs)
     result2 = predict_nn(training_data, next_game, pl, gamedate)

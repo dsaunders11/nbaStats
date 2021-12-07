@@ -32,7 +32,7 @@ class NeuralNet:
         self.bias = np.random.randn()
 
         # SET the weights properly! (it works like this for the stochastic version done until self.train)
-        self.weights = [np.random.randn() for i in X.columns] # for each indep var there is? 
+        self.weights = [np.random.randn() for i in X.columns] 
 
         self.errhistory = []
     
@@ -192,6 +192,7 @@ def neural_inputs(final, y):
         'Portland Trail Blazers', 'Washington Wizards', 'pts-1', 'pts-2',
         'pts-3', 'pts-4', 'pts-5', 'reb-1', 'reb-2', 'reb-3', 'reb-4', 'reb-5',
         'ast-1', 'ast-2', 'ast-3', 'ast-4', 'ast-5']]
+        
     Y = final[y]
 
     return X, Y
