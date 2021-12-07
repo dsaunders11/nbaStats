@@ -23,11 +23,10 @@ if len(player) > 0:
     pl = Player(player)
     elapsed.progress(5)
 
-    statistics = season_stats(pl.stats)
     elapsed.progress(40)
     training_data = compiler(pl.stats)
     elapsed.progress(60)
-    plstats = statistics[['date', 'pts', 'reb', 'ast']]
+    plstats = training_data[['date', 'pts', 'reb', 'ast']]
 
     pred_model, pred_inputs = train_model(training_data)
     pred_modelfr, pred_inputsfr = training_forest(training_data)
@@ -66,9 +65,9 @@ if len(player) > 0:
     st.write("Error (reb): " + str(result2['Error in Reb'][0]))
     st.write("Error (ast): " + str(result2['Error in Ast'][0]))
 
-    st.header('__*Season Statistics*__')
+    st.header('__*Previous 5-Game Statistics*__')
 
-    st.table(plstats)
+    st.table(plstats[-5:-1])
 
     st.balloons()
 
