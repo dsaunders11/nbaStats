@@ -23,9 +23,9 @@ if len(player) > 0:
     pl = Player(player)
     elapsed.progress(5)
 
-    training_data = compiler(pl.stats)
-    elapsed.progress(40)
     statistics = compiler(pl.stats, show=0)
+    elapsed.progress(40)
+    training_data = compiler(pl.stats)
     elapsed.progress(60)
     plstats = statistics[['date', 'pts', 'reb', 'ast']]
 
