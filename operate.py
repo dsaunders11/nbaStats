@@ -41,30 +41,30 @@ if len(player) > 0:
     result3 = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
     elapsed.progress(100)
 
-    st.header('Next Game:' + result['Date'])
+    st.header('Next Game:' + result['Date'][0])
 
-    st.subheader(result['Team'] + ' vs ' + opponent[0])
+    st.subheader(result['Team'][0] + ' vs ' + opponent[0])
 
     st.header('Predictions:')
 
     st.header('Random Forest Regression Calculation')
 
     st.table({'PTS':result3['Pts'], 'REB':result3['Reb'], 'AST': result3['Ast']})
-    st.write("Error: " + result3['Error'])
-    st.write('Regression Score: ' + result3['Regression Score'])
+    st.write("Error: " + result3['Error'][0])
+    st.write('Regression Score: ' + result3['Regression Score'][0])
 
     st.header('Linear Regression Calculation')
 
     st.table({'PTS':result['Pts'], 'REB':result['Reb'], 'AST': result['Ast']})
-    st.write("Error: " + result['Error'])
-    st.write('Regression Score: ' + result['Regression Score'])
+    st.write("Error: " + result['Error'][0])
+    st.write('Regression Score: ' + result['Regression Score'][0])
 
     st.header('Neural Network Calculation')
 
     st.table({'PTS':result2['Pts'], 'REB':result2['Reb'], 'AST': result2['Ast']})
-    st.write("Error (pts): " + result2['Error in Pts'])
-    st.write("Error (reb): " + result2['Error in Reb'])
-    st.write("Error (ast): " + result2['Error in Ast'])
+    st.write("Error (pts): " + result2['Error in Pts'][0])
+    st.write("Error (reb): " + result2['Error in Reb'][0])
+    st.write("Error (ast): " + result2['Error in Ast'][0])
 
     st.header('Season Statistics')
 
