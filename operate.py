@@ -28,7 +28,7 @@ if len(player) > 0:
 
     result = predict(next_game, pl, gamedate, pred_model, pred_inputs)
     result2 = predict_nn(training_data, next_game, pl, gamedate)
-    result3 = predict_forest(next_game, Scottie, gamedate, pred_modelfr, pred_inputsfr)
+    result3 = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
 
     st.header('Linear Regression Calculation')
 
