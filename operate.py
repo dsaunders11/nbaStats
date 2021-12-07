@@ -42,7 +42,7 @@ if len(player) > 0:
 
     st.header('Next Game:' + result['Date'])
 
-    st.subheader(result['Team'] + ' vs ' + opponent)
+    st.subheader(result['Team'] + ' vs ' + opponent[0])
 
     st.header('Predictions:')
 
