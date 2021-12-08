@@ -68,7 +68,9 @@ if len(player) > 0:
 
     st.subheader('_Random Forest Regression Calculation_')
 
-    forest = pd.DataFrame({'':'Predictions:', 'PTS':[str(round(result3['Pts'],1))][0], 'REB':[str(round(result3['Reb'],1))][0], 'AST': [str(round(result3['Ast'],1))][0]})
+    st.write(round(result3['Pts'],1))
+
+    forest = pd.DataFrame({'':'Predictions:', 'PTS':[str(round(result3['Pts'],1))], 'REB':[str(round(result3['Reb'],1))], 'AST': [str(round(result3['Ast'],1))]})
     forest.set_index('', inplace=True)
 
     st.write(forest)
