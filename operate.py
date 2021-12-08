@@ -54,6 +54,8 @@ if len(player) > 0:
 
     st.subheader('_Random Forest Regression Calculation_')
 
+    st.write(result3['Pts'])
+
     st.table({'PTS':round(result3['Pts'],1), 'REB':round(result3['Reb'],1), 'AST': round(result3['Ast'],1)})
     st.write("Error: " + str(round(result3['Error'][0],1)))
     st.write('Regression Score: ' + str(round(result3['Regression Score'][0],1)))
