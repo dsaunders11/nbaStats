@@ -57,7 +57,7 @@ if len(player) > 0:
     forest = pd.DataFrame({'':'Predictions:', 'PTS':round(result3['Pts'],1), 'REB':round(result3['Reb'],1), 'AST': round(result3['Ast'],1)})
     forest.set_index('', inplace=True)
 
-    st.table({'PTS':round(result3['Pts'],1), 'REB':round(result3['Reb'],1), 'AST': round(result3['Ast'],1)})
+    st.write(forest)
     st.write("Error: " + str(round(result3['Error'][0],1)))
     st.write('Regression Score: ' + str(round(result3['Regression Score'][0],1)))
 
