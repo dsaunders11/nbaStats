@@ -28,8 +28,8 @@ if len(player) > 0:
         elapsed.progress(40)
     except KeyError:
         st.error("Please write out the player's full name as listed on [link](https://www.nba.com/stats/players/)")
-    except JSONDecodeError:
-        st.error("Overloaded API")
+    # except JSONDecodeError:
+        # st.error("Overloaded API")
 
     plstats = training_data[['date', 'pts', 'reb', 'ast']]
 
