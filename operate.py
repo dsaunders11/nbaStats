@@ -24,6 +24,10 @@ st.text('Progress:')
 
 elapsed = st.progress(0) # times estimated based on the running time of each segment (as performed in a notebook)
 
+if player == 'Dash Stevanovich':
+
+    st.success('80 PTS, 69 REB, 202 BLK, 90 STL')
+
 if len(player) > 0:
 
     try:
