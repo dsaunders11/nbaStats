@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 import pandas as pd 
+import json
 
 from pull import Player 
 from pre_process import compiler, season_stats
@@ -28,8 +29,8 @@ if len(player) > 0:
         elapsed.progress(40)
     except KeyError:
         st.error("Please write out the player's full name as listed on [link](https://www.nba.com/stats/players/)")
-    # except JSONDecodeError:
-        # st.error("Overloaded API")
+    except json.decoder.JSONDecodeError:
+        st.error("Overloaded API, please wait a few minutes and try again.")
 
     plstats = training_data[['date', 'pts', 'reb', 'ast']]
 
