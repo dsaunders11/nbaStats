@@ -14,7 +14,7 @@ st.title('nbaStats: Player Stat Predictor')
 
 st.text('Made by David Saunders')
 
-st.info("Enter the player's name with normal capitalization (i.e 'Kevin Durant') as listed on [link](https://www.nba.com/stats/players/)")
+st.info("Enter the player's name with normal capitalization (i.e 'Kevin Durant') as listed on [link](https://www.nba.com/players)")
 
 st.warning("Making too many requests in a short period of time will overload the API with requests. Please wait a short amount of time between each request.")
 
@@ -28,6 +28,8 @@ if player == 'Dash Stevanovich':
 
     st.success('80 PTS, 69 REB, 202 BLK, 90 STL')
 
+    quit()
+
 if len(player) > 0:
 
     try:
@@ -36,7 +38,7 @@ if len(player) > 0:
         training_data = compiler(pl.stats)
         elapsed.progress(40)
     except (KeyError, IndexError):
-        st.error("Please write out the player's full name as listed on [link](https://www.nba.com/stats/players/)")
+        st.error("Please write out the player's full name as listed on [link](https://www.nba.com/players)")
     except json.decoder.JSONDecodeError:
         st.error("Overloaded API, please wait a few minutes and try again.")
 
