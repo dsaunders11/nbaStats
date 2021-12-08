@@ -23,14 +23,12 @@ if len(player) > 0:
 
     try:
         pl = Player(player)
+        elapsed.progress(5)
         training_data = compiler(pl.stats)
+        elapsed.progress(40)
     except KeyError:
         st.error("Please write out the player's full name as listed on [link](https://www.nba.com/stats/players/)")
 
-    pl = Player(player)
-    training_data = compiler(pl.stats)
-    elapsed.progress(5)
-    elapsed.progress(40)
     plstats = training_data[['date', 'pts', 'reb', 'ast']]
 
     pred_model, pred_inputs = train_model(training_data)
