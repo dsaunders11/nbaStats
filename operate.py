@@ -30,6 +30,10 @@ if player == 'Dash Stevanovich':
 
     quit()
 
+if player == 'Shirshak Gautam':
+
+    st.success('the best to ever do it')
+
 if len(player) > 0:
 
     try:
