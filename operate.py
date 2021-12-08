@@ -55,13 +55,13 @@ if len(player) > 0:
     st.subheader('_Random Forest Regression Calculation_')
 
     st.table({'PTS':round(result3['Pts'],1), 'REB':round(result3['Reb'],1), 'AST': round(result3['Ast'],1)})
-    st.write("Error: " + str(round(result3['Error'][0]),1))
+    st.write("Error: " + str(round(result3['Error'][0],1)))
     st.write('Regression Score: ' + str(round(result3['Regression Score'][0],1)))
 
     st.subheader('_Linear Regression Calculation_')
 
     st.table({'PTS':round(result['Pts'],1),'REB':round(result['Reb'],1), 'AST': round(result['Ast'],1)})
-    st.write("Error: " + str(round(result['Error'][0]),1))
+    st.write("Error: " + str(round(result['Error'][0],1)))
     st.write('Regression Score: ' + str(round(result['Regression Score'][0],1)))
 
     st.subheader('_Neural Network Calculation_')
