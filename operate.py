@@ -54,22 +54,22 @@ if len(player) > 0:
 
     st.subheader('_Random Forest Regression Calculation_')
 
-    st.table({'PTS':result3['Pts'], 'REB':result3['Reb'], 'AST': result3['Ast']})
-    st.write("Error: " + str(result3['Error'][0]))
-    st.write('Regression Score: ' + str(result3['Regression Score'][0]))
+    st.table({'PTS':round(result3['Pts'],1), 'REB':round(result3['Reb'],1), 'AST': round(result3['Ast'],1)})
+    st.write("Error: " + str(round(result3['Error'][0]),1))
+    st.write('Regression Score: ' + str(round(result3['Regression Score'][0],1)))
 
     st.subheader('_Linear Regression Calculation_')
 
-    st.table({'PTS':result['Pts'], 'REB':result['Reb'], 'AST': result['Ast']})
-    st.write("Error: " + str(result['Error'][0]))
-    st.write('Regression Score: ' + str(result['Regression Score'][0]))
+    st.table({'PTS':round(result['Pts'],1),'REB':round(result['Reb'],1), 'AST': round(result['Ast'],1)})
+    st.write("Error: " + str(round(result['Error'][0]),1))
+    st.write('Regression Score: ' + str(round(result['Regression Score'][0],1)))
 
     st.subheader('_Neural Network Calculation_')
 
-    st.table({'PTS':result2['Pts'], 'REB':result2['Reb'], 'AST': result2['Ast']})
-    st.write("Error (pts): " + str(result2['Error in Pts'][0]))
-    st.write("Error (reb): " + str(result2['Error in Reb'][0]))
-    st.write("Error (ast): " + str(result2['Error in Ast'][0]))
+    st.table({'PTS':round(result2['Pts'],1),'REB':round(result2['Reb'],1), 'AST': round(result2['Ast'],1)})
+    st.write("Error (pts): " + str(round(result2['Error in Pts'][0],1)))
+    st.write("Error (reb): " + str(round(result2['Error in Reb'][0],1)))
+    st.write("Error (ast): " + str(round(result2['Error in Ast'][0],1)))
 
     st.header('__*Previous 5-Game Statistics*__')
 
