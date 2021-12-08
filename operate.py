@@ -68,7 +68,7 @@ if len(player) > 0:
 
     st.subheader('_Random Forest Regression Calculation_')
 
-    forest = pd.DataFrame({'':'Predictions:', 'PTS':round(result3['Pts'][0],1), 'REB':round(result3['Reb'][0],1), 'AST': round(result3['Ast'][0],1)})
+    forest = pd.DataFrame({'':'Predictions:', 'PTS':[round(result3['Pts'][0],1)], 'REB':[round(result3['Reb'][0],1)], 'AST': [round(result3['Ast'][0],1)]})
     forest.set_index('', inplace=True)
 
     st.write(forest)
@@ -77,7 +77,7 @@ if len(player) > 0:
 
     st.subheader('_Linear Regression Calculation_')
 
-    linear = pd.DataFrame({'':'Predictions:','PTS':round(result['Pts'][0],1),'REB':round(result['Reb'][0],1), 'AST': round(result['Ast'][0],1)})
+    linear = pd.DataFrame({'':'Predictions:','PTS':[round(result['Pts'][0],1)],'REB':[round(result['Reb'][0],1)], 'AST': [round(result['Ast'][0],1)]})
     linear.set_index('', inplace=True)
 
     st.write(linear)
@@ -86,7 +86,7 @@ if len(player) > 0:
 
     st.subheader('_Neural Network Calculation_')
 
-    neural = pd.DataFrame({'':'Predictions:','PTS':round(result2['Pts'][0],1),'REB':round(result2['Reb'][0],1), 'AST': round(result2['Ast'][0],1)})
+    neural = pd.DataFrame({'':'Predictions:','PTS':[round(result2['Pts'][0],1)],'REB':[round(result2['Reb'][0],1)], 'AST': [round(result2['Ast'][0],1)]})
     neural.set_index('', inplace=True)
 
     st.write(neural)
