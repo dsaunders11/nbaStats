@@ -21,7 +21,10 @@ elapsed = st.progress(0) # times estimated based on the running time of each seg
 
 if len(player) > 0:
 
-    pl = Player(player)
+    try:
+        pl = Player(player)
+    except KeyError:
+        st.error("Please write out the player's full name as listed on [link](https://www.nba.com/stats/players/)")
     elapsed.progress(5)
 
     training_data = compiler(pl.stats)
