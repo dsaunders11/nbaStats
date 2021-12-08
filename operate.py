@@ -14,6 +14,10 @@ st.title('nbaStats: Player Stat Predictor')
 
 st.text('Made by David Saunders')
 
+st.info("Enter the player's name with normal capitalization (i.e 'Kevin Durant') as listed on [link](https://www.nba.com/stats/players/)")
+
+st.warning("Making too many requests in a short period of time will overload the API with requests. Please wait a short amount of time between each request.")
+
 player = st.text_input("Player:")
 
 st.text('Progress:')
@@ -63,13 +67,19 @@ if len(player) > 0:
 
     st.subheader('_Linear Regression Calculation_')
 
-    st.table({'PTS':round(result['Pts'],1),'REB':round(result['Reb'],1), 'AST': round(result['Ast'],1)})
+    linear = pd.DataFrame({'':'Predictions:','PTS':round(result['Pts'],1),'REB':round(result['Reb'],1), 'AST': round(result['Ast'],1)})
+    linear.set_index('', inplace=True)
+
+    st.write(linear)
     st.write("Error: " + str(round(result['Error'][0],1)))
     st.write('Regression Score: ' + str(round(result['Regression Score'][0],1)))
 
     st.subheader('_Neural Network Calculation_')
 
-    st.table({'PTS':round(result2['Pts'],1),'REB':round(result2['Reb'],1), 'AST': round(result2['Ast'],1)})
+    neural = pd.DataFrame({'':'Predictions:','PTS':round(result2['Pts'],1),'REB':round(result2['Reb'],1), 'AST': round(result2['Ast'],1)})
+    neural.set_index('', inplace=True)
+
+    st.write(neural)
     st.write("Error (pts): " + str(round(result2['Error in Pts'][0],1)))
     st.write("Error (reb): " + str(round(result2['Error in Reb'][0],1)))
     st.write("Error (ast): " + str(round(result2['Error in Ast'][0],1)))
