@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 import pandas as pd 
 import json
 
@@ -9,6 +8,9 @@ from train import train_model, predict
 from prediction_set import nextgame
 from neural_net import predict_nn
 from forest import training_forest, predict_forest
+
+if 'score' not in st.session_state:
+    st.session_state.score = 10000
 
 st.title('nbaStats: Player Stat Predictor')
 
@@ -60,9 +62,32 @@ if len(player) > 0:
     result3 = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
     elapsed.progress(100)
 
+    avpts = (result['Pts'] + result2['Pts'] + result3['Pts']) / 3
+    diffs_pts = (avpts - result['Pts'])**2 + (avpts - result2['Pts'])**2 + (avpts - result3['Pts'])**2
+
+    avast = (result['Ast'] + result2['Ast'] + result3['Ast']) / 3
+    diffs_ast = (avast - result['Ast'])**2 + (avast - result2['Ast'])**2 + (avast - result3['Ast'])**2
+
+    avreb = (result['Reb'] + result2['Reb'] + result3['Reb']) / 3
+    diffs_reb = (avreb - result['Reb'])**2 + (avreb - result2['Reb'])**2 + (avreb - result3['Reb'])**2
+
+    correlation = (diffs_reb + diffs_ast + diffs_pts) / 3
+
     st.header('__*Next Game:*__ ' + result['Date'][0])
 
     st.subheader(result['Team'][0] + ' _vs_ ' + opponent[0])
+
+    st.header('Player Score: ' + correlation)
+
+    if st.session_state.score != 0:
+        if st.session_state.score > correlation:
+            st.success('This is a better player to bet on!')
+        elif st.session_state.score < correlation:
+            st.error('This player has a lower correlation; you might want to try again.')
+        else:
+            st.warning('This player has the same correlation as the previous one.')
+
+    st.session_state.score = correlation
 
     st.header('__*Predictions:*__')
 
