@@ -77,17 +77,17 @@ if len(player) > 0:
 
     st.subheader(result['Team'][0] + ' _vs_ ' + opponent[0])
 
-    st.header('Player Score: ' + correlation)
+    st.header('Player Score: ' + correlation[0])
 
     if st.session_state.score != 0:
-        if st.session_state.score > correlation:
+        if st.session_state.score > correlation[0]:
             st.success('This is a better player to bet on!')
-        elif st.session_state.score < correlation:
+        elif st.session_state.score < correlation[0]:
             st.error('This player has a lower correlation; you might want to try again.')
         else:
             st.warning('This player has the same correlation as the previous one.')
 
-    st.session_state.score = correlation
+    st.session_state.score = correlation[0]
 
     st.header('__*Predictions:*__')
 
