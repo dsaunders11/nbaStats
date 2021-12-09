@@ -1,5 +1,13 @@
 README.md
 setup.py
+nbastats/__init__.py
+nbastats/forest.py
+nbastats/neural_net.py
+nbastats/operate.py
+nbastats/pre_process.py
+nbastats/prediction_set.py
+nbastats/pull.py
+nbastats/train.py
 nbastats.egg-info/PKG-INFO
 nbastats.egg-info/SOURCES.txt
 nbastats.egg-info/dependency_links.txt
