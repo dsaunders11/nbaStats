@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
-from pull import get_team_name
+from nbastats.pull import get_team_name
 
 def future_compiler(upcoming, team_id): 
     """
