@@ -72,7 +72,7 @@ if len(player) > 0:
 
     st.subheader(result['Team'][0] + ' _vs_ ' + opponent[0])
 
-    st.header('Player Score: ' + correlation[0])
+    st.header('Player Score: ' + str(round(correlation[0],0)))
 
     if st.session_state.score != 0:
         if st.session_state.score > correlation[0]:
