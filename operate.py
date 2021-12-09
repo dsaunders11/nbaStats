@@ -73,6 +73,7 @@ if len(player) > 0:
     st.subheader(result['Team'][0] + ' _vs_ ' + opponent[0])
 
     st.header('Player Score: ' + str(round(correlation[0],0)))
+    st.info('A higher value means a lower correlation between the three ML regression methods.')
 
     if st.session_state.score != 0:
         if st.session_state.score > correlation[0]:
@@ -117,7 +118,8 @@ if len(player) > 0:
     st.header('__*Previous 5-Game Statistics*__')
 
     final_stats = plstats[-5:]
-    final_stats.reset_index()
+    final_stats[''] = [5,4,3,2,1]
+    final_stats.set_index('', inplace=True)
 
     st.table(final_stats)
 
