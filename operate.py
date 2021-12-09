@@ -9,6 +9,20 @@ from prediction_set import nextgame
 from neural_net import predict_nn
 from forest import training_forest, predict_forest
 
+def corr(result, result2, result3):
+    avpts = (result['Pts'] + result2['Pts'] + result3['Pts']) / 3
+    diffs_pts = (avpts - result['Pts'])**2 + (avpts - result2['Pts'])**2 + (avpts - result3['Pts'])**2
+
+    avast = (result['Ast'] + result2['Ast'] + result3['Ast']) / 3
+    diffs_ast = (avast - result['Ast'])**2 + (avast - result2['Ast'])**2 + (avast - result3['Ast'])**2
+
+    avreb = (result['Reb'] + result2['Reb'] + result3['Reb']) / 3
+    diffs_reb = (avreb - result['Reb'])**2 + (avreb - result2['Reb'])**2 + (avreb - result3['Reb'])**2
+
+    correlation = (diffs_reb + diffs_ast + diffs_pts) / 3
+
+    return correlation
+
 if 'score' not in st.session_state:
     st.session_state.score = 10000
 
@@ -25,16 +39,6 @@ player = st.text_input("Player:")
 st.text('Progress:')
 
 elapsed = st.progress(0) # times estimated based on the running time of each segment (as performed in a notebook)
-
-if player == 'Dash Stevanovich':
-
-    st.success('80 PTS, 69 REB, 202 BLK, 90 STL')
-
-    quit()
-
-if player == 'Shirshak Gautam':
-
-    st.success('the best to ever do it')
 
 if len(player) > 0:
 
@@ -62,16 +66,7 @@ if len(player) > 0:
     result3 = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
     elapsed.progress(100)
 
-    avpts = (result['Pts'] + result2['Pts'] + result3['Pts']) / 3
-    diffs_pts = (avpts - result['Pts'])**2 + (avpts - result2['Pts'])**2 + (avpts - result3['Pts'])**2
-
-    avast = (result['Ast'] + result2['Ast'] + result3['Ast']) / 3
-    diffs_ast = (avast - result['Ast'])**2 + (avast - result2['Ast'])**2 + (avast - result3['Ast'])**2
-
-    avreb = (result['Reb'] + result2['Reb'] + result3['Reb']) / 3
-    diffs_reb = (avreb - result['Reb'])**2 + (avreb - result2['Reb'])**2 + (avreb - result3['Reb'])**2
-
-    correlation = (diffs_reb + diffs_ast + diffs_pts) / 3
+    correlation = corr(result, result2, result3)
 
     st.header('__*Next Game:*__ ' + result['Date'][0])
 
