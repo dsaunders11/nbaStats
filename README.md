@@ -25,7 +25,7 @@ To use the statline predictor without downloading the code, go to https://share.
 
 To follow a more involved process, you can import the code into a python file or notebook and follow the process given below...
 
-'''
+```
 from nbaStats import * 
 
 player = 'Your Input'
@@ -41,4 +41,4 @@ next_game, gamedate, opp = nextgame(pl, training_data)
 forest_prediction = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
 linear_prediction = predict(next_game, pl, gamedate, pred_model, pred_inputs)
 neuralnet_prediction = predict_nn(training_data, next_game, pl, gamedate)
-'''
+```
