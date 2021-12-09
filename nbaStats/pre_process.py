@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 from datetime import datetime
 
-from nbaStats.pull import get_team_name
+from pull import get_team_name
 
 def onehot_encode(df):
     """

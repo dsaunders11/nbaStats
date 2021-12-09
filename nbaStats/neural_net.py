@@ -2,8 +2,6 @@ import pandas as pd
 import numpy as np 
 from sklearn.model_selection import train_test_split
 
-from nbaStats.train import inpout
-
 # https://realpython.com/python-ai-neural-network/
 
 # https://towardsdatascience.com/inroduction-to-neural-networks-in-python-7e0b422e6c24
