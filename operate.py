@@ -77,7 +77,7 @@ if len(player) > 0:
 
     st.subheader('_Linear Regression Calculation_')
 
-    linear = pd.DataFrame({'':'Predictions:', 'PTS':round(result['Pts'],1)[0], 'REB':round(result['Reb'],1)[0], 'AST': round(result['Ast'],1)[0]})
+    linear = pd.DataFrame({'':'Predictions:', 'PTS':[round(result['Pts'],1)[0]], 'REB':[round(result['Reb'],1)[0]], 'AST': [round(result['Ast'],1)[0]]})
     linear.set_index('', inplace=True)
 
     st.write(linear)
@@ -86,7 +86,7 @@ if len(player) > 0:
 
     st.subheader('_Neural Network Calculation_')
 
-    neural = pd.DataFrame({'':'Predictions:', 'PTS':round(result2['Pts'],1)[0], 'REB':round(result2['Reb'],1)[0], 'AST': round(result2['Ast'],1)[0]})
+    neural = pd.DataFrame({'':'Predictions:', 'PTS':[round(result2['Pts'],1)[0]], 'REB':[round(result2['Reb'],1)[0]], 'AST': [round(result2['Ast'],1)[0]]})
     neural.set_index('', inplace=True)
 
     st.write(neural)
