@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
-from pull import get_team_name
+from nbaStats.pull import get_team_name
 
 def future_compiler(upcoming, team_id): 
     """
@@ -150,3 +150,36 @@ def nextgame(player, final):
     df = df.drop('date', axis = 1)
 
     return df, gamedate, opponent
+
+def corr(result, result2, result3):
+    """
+    Computes the correlation between the three regression methods by taking squared differences from averages in each category and then averaging those results. 
+    Interpret this as a smaller # meaning a better score / agreement. 
+
+    Parameters 
+    ----------
+    result: pandas dataframe 
+        linear regression results 
+    result2: pandas dataframe
+        the neural network results 
+    result3: pandas dataframe 
+        the random forest regression results 
+
+    Returns 
+    ----------
+    correlation: pandas.core.series.Series
+        the correlation value for the given player 
+    
+    """
+    avpts = (result['Pts'] + result2['Pts'] + result3['Pts']) / 3
+    diffs_pts = (avpts - result['Pts'])**2 + (avpts - result2['Pts'])**2 + (avpts - result3['Pts'])**2
+
+    avast = (result['Ast'] + result2['Ast'] + result3['Ast']) / 3
+    diffs_ast = (avast - result['Ast'])**2 + (avast - result2['Ast'])**2 + (avast - result3['Ast'])**2
+
+    avreb = (result['Reb'] + result2['Reb'] + result3['Reb']) / 3
+    diffs_reb = (avreb - result['Reb'])**2 + (avreb - result2['Reb'])**2 + (avreb - result3['Reb'])**2
+
+    correlation = (diffs_reb + diffs_ast + diffs_pts) / 3
+
+    return correlation

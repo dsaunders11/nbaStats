@@ -6,7 +6,7 @@ setuptools.setup(
     author='David Saunders',
     author_email='d.saunders@yale.edu',
     description='Predicting NBA player statlines',
-    # packages=['nbastats', 'nbastats/processing', 'nbastats/modelling', 'nbastats/plotting'],
+    packages=['nbaStats'],
     python_requires='>=3.7',
     url='https://github.com/NbaStats',
     install_requires=['numpy','pandas','matplotlib', 'requests', 'datetime', 'time']

@@ -2,26 +2,13 @@ import streamlit as st
 import pandas as pd 
 import json
 
-from pull import Player 
-from pre_process import compiler, season_stats
-from train import train_model, predict
-from prediction_set import nextgame
-from neural_net import predict_nn
-from forest import training_forest, predict_forest
-
-def corr(result, result2, result3):
-    avpts = (result['Pts'] + result2['Pts'] + result3['Pts']) / 3
-    diffs_pts = (avpts - result['Pts'])**2 + (avpts - result2['Pts'])**2 + (avpts - result3['Pts'])**2
-
-    avast = (result['Ast'] + result2['Ast'] + result3['Ast']) / 3
-    diffs_ast = (avast - result['Ast'])**2 + (avast - result2['Ast'])**2 + (avast - result3['Ast'])**2
-
-    avreb = (result['Reb'] + result2['Reb'] + result3['Reb']) / 3
-    diffs_reb = (avreb - result['Reb'])**2 + (avreb - result2['Reb'])**2 + (avreb - result3['Reb'])**2
-
-    correlation = (diffs_reb + diffs_ast + diffs_pts) / 3
-
-    return correlation
+from nbaStats.pull import Player 
+from nbaStats.pre_process import compiler
+from nbaStats.train import train_model, predict
+from nbaStats.prediction_set import nextgame
+from nbaStats.neural_net import predict_nn
+from nbaStats.forest import training_forest, predict_forest
+from nbaStats.prediction_set import corr
 
 if 'score' not in st.session_state:
     st.session_state.score = 10000
