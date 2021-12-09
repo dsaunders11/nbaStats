@@ -27,10 +27,10 @@ class NeuralNet:
         self.learning_rate = alpha 
         self.inputs = X 
         self.outputs = y 
-        self.bias = np.random.randn()
+        self.bias = np.random.uniform() # arbitrary starting point
 
         # SET the weights properly! (it works like this for the stochastic version done until self.train)
-        self.weights = [np.random.randn() for i in X.columns] 
+        self.weights = [np.random.uniform() for i in X.columns] 
 
         self.errhistory = []
     
@@ -114,8 +114,8 @@ class NeuralNet:
         dw_l1 = sample
         derr_dw = dw_l1 * derr_dpred * derr_sig
 
-        self.bias = self.bias - (derr_db * self.learning_rate)
-        self.weights = self.weights - (derr_dw * self.learning_rate)
+        self.bias += (derr_db * self.learning_rate)
+        self.weights += (derr_dw * self.learning_rate)
         self.error = self.costfn(layer2, result)
 
     def train(self, iterations = 1000):
@@ -228,6 +228,8 @@ def predict_nn(final, next_game, player, date):
         nn.train()
 
         r, err = nn.predict(next_game)
+
+        print(np.max(y))
 
         result.append(r * np.max(y) * 1.1)
         errors.append(err)
