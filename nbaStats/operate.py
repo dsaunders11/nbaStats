@@ -2,13 +2,13 @@ import streamlit as st
 import pandas as pd 
 import json
 
-from nbaStats.pull import Player 
-from nbaStats.pre_process import compiler
-from nbaStats.train import train_model, predict
-from nbaStats.prediction_set import nextgame
-from nbaStats.neural_net import predict_nn
-from nbaStats.forest import training_forest, predict_forest
-from nbaStats.prediction_set import corr
+from pull import Player 
+from pre_process import compiler
+from train import train_model, predict
+from prediction_set import nextgame
+from neural_net import predict_nn
+from forest import training_forest, predict_forest
+from prediction_set import corr
 
 if 'score' not in st.session_state:
     st.session_state.score = 10000
