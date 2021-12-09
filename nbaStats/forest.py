@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.ensemble import RandomForestRegressor
 
-from nbastats.train import inpout
+from nbaStats.train import inpout
 
 #https://www.geeksforgeeks.org/random-forest-regression-in-python/
 
