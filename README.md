@@ -19,8 +19,26 @@ Clone the repository and install it using...
 
 from within the home directory (nbaStats/)
 
-## Challenges 
+## Use
 
-I'm facing issues with the particular model's treatment of certain players who have scoring spikes (i.e Steph Curry). I think this may be a linear regression problem, or it could also have to do with how I set up the dataframe and the lack of data so far. Should I be using previous seasons, rather than just working back five games? This also doesn't work if a player hasn't been playing a lot, so I hope to make that arbitrary five-game reference more dynamic. 
+To use the statline predictor without downloading the code, go to https://share.streamlit.io/dsaunders11/nbastats/main/operate.py
 
-I also struggled a lot with getting the modules to interact, and I'm having trouble understanding how to deal with the error. I think the most difficult part coming up will be implementing other predictive measures and comparing them (since it took a long time to get the data into nice dataframes, which may need different formats depending on the regression model). 
+To follow a more involved process, you can import the code into a python file or notebook and follow the process given below...
+
+'''
+from nbaStats import * 
+
+player = 'Your Input'
+pl = Player(player)
+
+training_data = compiler(pl.stats)
+
+pred_model, pred_inputs = train_model(training_data)
+pred_modelfr, pred_inputsfr = training_forest(training_data)
+
+next_game, gamedate, opp = nextgame(pl, training_data) 
+
+forest_prediction = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
+linear_prediction = predict(next_game, pl, gamedate, pred_model, pred_inputs)
+neuralnet_prediction = predict_nn(training_data, next_game, pl, gamedate)
+'''
