@@ -51,5 +51,8 @@ First you instantiate the player class object and compile the training data to b
 
 ## Methodology 
 
-- training data (temporality) 
-- error / correlation computation 
+Regression problems like this one require the use of training and test data. My algorithm for picking out training data (as well as what numerical and categorical variables to trian on) is not comprehensive; this is the first version of this package meant to give rudimentary predictions. That being said, here is how I went about organizing the data...
+
+I decided to only work with data from the current NBA season, which means that predictions will get better as the season progresses (given more games have occured). Each predicted statistic is considered to be influenced by the previous 5 game stats in points, rebounds, and assists, as well as by the opponent and whether the player is playing at home or away. This five game designation is entirely arbitrary, and making it more flexible is something I hope to implement in the future. Note that this also means that players with fewer than 5 games played will cause an error (though they probably aren't the best to predict on anyway). Also arbitrary (and flexible to adjust should the user wish) are the splits between which data is trained or tested on (20% is used for testing currently) and the number of iterations the neural network undergoes. 
+
+The errors in the cases of the sklearn models are taken as mean squared errors, while for the neural network I take the most recent error in the training process as the error on the predicted values. Given that these errors are computed in different ways, I measure the *correlation* between the methods not based on error, but rather based on summing the differences between each statistic and the average computed value for said statistic. I then take an average of these differences as a correlation factor, which is simply a number the the user should aim to get as close to 0 as possible. This is a heuristic process and is meant to be used as a qualitative assessment. 
