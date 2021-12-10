@@ -26,23 +26,23 @@ To use the statline predictor without downloading the code, go to https://share.
 To follow a more involved process, you can import the code into a python file or notebook and follow the process given below...
 
 ```
-from nbaStats import * 
+import nbaStats as nb
 
 player = 'Your Input'
-pl = Player(player)
+pl = nb.Player(player)
 
-training_data = compiler(pl.stats)
+training_data = nb.compiler(pl.stats)
 
-pred_model, pred_inputs = train_model(training_data)
-pred_modelfr, pred_inputsfr = training_forest(training_data)
+pred_model, pred_inputs = nb.train_model(training_data)
+pred_modelfr, pred_inputsfr = nb.training_forest(training_data)
 
-next_game, gamedate, opp = nextgame(pl, training_data) 
+next_game, gamedate, opp = nb.nextgame(pl, training_data) 
 
-forest_prediction = predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
-linear_prediction = predict(next_game, pl, gamedate, pred_model, pred_inputs)
-neuralnet_prediction = predict_nn(training_data, next_game, pl, gamedate)
+forest_prediction = nb.predict_forest(next_game, pl, gamedate, pred_modelfr, pred_inputsfr)
+linear_prediction = nb.predict(next_game, pl, gamedate, pred_model, pred_inputs)
+neuralnet_prediction = nb.predict_nn(training_data, next_game, pl, gamedate)
 
-correlation = corr(forest_prediction, linear_prediction, neuralnet_prediction)
+correlation = nb.corr(forest_prediction, linear_prediction, neuralnet_prediction)
 ```
 
 ### Breakdown of Use 
