@@ -13,9 +13,15 @@ Found at https://scikit-learn.org/stable/index.html.
 
 ## Installation 
 
+First install the necessary dependencies...
+
+- numpy, pandas, requests, json, time, datetime, sklearn
+
 Clone the repository and install it using... 
 
-> pip install .
+```
+pip install .
+```
 
 from within the home directory (nbaStats/)
 
