@@ -15,7 +15,7 @@ Found at https://scikit-learn.org/stable/index.html.
 
 First install the necessary dependencies...
 
-- numpy, pandas, requests, json, time, datetime, sklearn
+- numpy, pandas, requests, json, time, datetime, sklearn, streamlit
 
 Clone the repository and install it using... 
 
