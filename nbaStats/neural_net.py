@@ -230,8 +230,6 @@ def predict_nn(final, next_game, player, date):
 
         r, err = nn.predict(next_game)
 
-        print(np.max(y))
-
         result.append(r * np.max(y) * 1.1)
         errors.append(err)
 
