@@ -9,5 +9,5 @@ setuptools.setup(
     packages=['nbaStats'],
     python_requires='>=3.7',
     url='https://github.com/NbaStats',
-    install_requires=['numpy','pandas','matplotlib', 'requests', 'datetime', 'time']
+    install_requires=['numpy','pandas', 'requests', 'datetime', 'time']
 )
