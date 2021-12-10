@@ -47,7 +47,7 @@ correlation = nb.corr(forest_prediction, linear_prediction, neuralnet_prediction
 
 ### Breakdown of Use 
 
-First you instantiate the player class object and compile the training data to be used for the regressions. The sklearn models (linear and random forest regressions) have to be trained, saving the predictions on the test data as well as the test data. Next, the sample for the next game has to be generated via API requests, and finally each prediction can be run on said sample. The final prediction results are returned, as well as the relevant errors. The last line computes a correlation between the three prediction methods.
+First you instantiate the player class object and compile the training data to be used for the regressions. The sklearn models (linear and random forest regressions) have to be trained, saving the predictions on the test data as well as the test data itself. Next, the sample for the next game has to be generated via API requests, and finally each prediction can be run on said sample. The final prediction results are returned, as well as the relevant errors. The last line computes a correlation between the three prediction methods.
 
 ## Methodology 
 
