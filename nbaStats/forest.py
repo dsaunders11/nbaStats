@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 from nbaStats.train import inpout
 
-#https://www.geeksforgeeks.org/random-forest-regression-in-python/
+#Citations: https://www.geeksforgeeks.org/random-forest-regression-in-python/
 
 cl = RandomForestRegressor(n_estimators=100, random_state=0)
 
