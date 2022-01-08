@@ -3,6 +3,14 @@ Predicts basic NBA statlines (points, rebounds, assists) for a given player in t
 
 Test the current version at: https://share.streamlit.io/dsaunders11/nbastats/main/operate.py
 
+## Sample Output 
+
+![A sample prediction output from this repository](sample_output.png)
+
+## Notes 
+
+There are still some bugs and general issues with the regression methods used; I am continuing to work on these. 
+
 ## Citations 
 
 This package makes use of the balldontlie API (https://github.com/ynnadkrap/balldontlie or https://www.balldontlie.io/#introduction). 
