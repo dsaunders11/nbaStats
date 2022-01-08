@@ -1,6 +1,8 @@
 # nbaStats
 Predicts basic NBA statlines (points, rebounds, assists) for a given player in the next upcoming game using different forms of ML. 
 
+Test the current version at: https://share.streamlit.io/dsaunders11/nbastats/main/operate.py
+
 ## Citations 
 
 This package makes use of the balldontlie API (https://github.com/ynnadkrap/balldontlie or https://www.balldontlie.io/#introduction). 
