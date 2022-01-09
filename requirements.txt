@@ -4,4 +4,3 @@ datetime
 sklearn
 streamlit
 requests
-matplotlib
