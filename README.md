@@ -3,6 +3,8 @@ Predicts basic NBA statlines (points, rebounds, assists) for a given player in t
 
 Test the current version at: https://share.streamlit.io/dsaunders11/nbastats/main/operate.py
 
+Note: Allow time for dependencies to load on first use. 
+
 ## Sample Output 
 
 ![A sample prediction output from this repository](sample_output.png)
@@ -38,6 +40,8 @@ from within the home directory (nbaStats/)
 ## Use
 
 To use the statline predictor without downloading the code, go to https://share.streamlit.io/dsaunders11/nbastats/main/operate.py
+
+Note: Allow time for dependencies to load on first use. 
 
 To follow a more involved process, you can import the code into a python file or notebook and follow the process given below...
 
