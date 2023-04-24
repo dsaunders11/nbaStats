@@ -1,7 +1,7 @@
 # nbaStats
 Predicts basic NBA statlines (points, rebounds, assists) for a given player in the next upcoming game using different forms of ML. 
 
-Test the current version at: https://share.streamlit.io/dsaunders11/nbastats/main/operate.py
+Test the current version at: under maintenance!
 
 Note: Allow time for dependencies to load on first use. 
 
@@ -39,7 +39,7 @@ from within the home directory (nbaStats/)
 
 ## Use
 
-To use the statline predictor without downloading the code, go to https://share.streamlit.io/dsaunders11/nbastats/main/operate.py
+To use the statline predictor without downloading the code, go to (under maintenance)
 
 Note: Allow time for dependencies to load on first use. 
 
